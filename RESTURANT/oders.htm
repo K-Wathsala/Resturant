@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restaurant Homepage</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-100 font-sans">
+
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+
+
+
+<div class="container mx-auto px-4 py-8">
+    <!-- Restaurant Menu -->
+    <div class="menu grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Menu Item -->
+      <div class="menu-item border p-4 rounded-lg shadow-lg">
+        <img src="dish-image.jpg" alt="Dish Name" class="w-full h-40 object-cover rounded-md">
+        <h3 class="text-xl font-semibold mt-4">Dish Name</h3>
+        <p class="text-gray-700 mt-2">Delicious description of the dish.</p>
+        <p class="text-lg font-bold mt-2">$10.00</p>
+        
+        <!-- Quantity Selector -->
+        <div class="flex items-center mt-4">
+          <label class="mr-2">Quantity:</label>
+          <input type="number" value="1" min="1" class="quantity-input w-12 border rounded px-2 py-1">
+        </div>
+        
+        <!-- Add to Cart Button -->
+        <button class="add-to-cart bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">
+          Add to Cart
+        </button>
+      </div>
+      <!-- Repeat for other dishes -->
+    </div>
+  
+    <!-- Cart Section -->
+    <div class="cart mt-10">
+      <h2 class="text-2xl font-semibold">Your Cart</h2>
+      <ul class="cart-items mt-4">
+        <!-- Cart Items Will Be Added Here Dynamically -->
+      </ul>
+      
+      <!-- Total Price and Checkout Button -->
+      <div class="mt-6">
+        <p class="text-lg font-bold">Total: $<span id="total-price">0.00</span></p>
+        <button class="checkout bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-4">
+          Checkout
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Array to store cart items
+let cart = [];
+
+// Function to update the cart display
+function updateCart() {
+  const cartItems = document.querySelector('.cart-items');
+  const totalPriceElement = document.getElementById('total-price');
+  
+  // Clear cart display
+  cartItems.innerHTML = '';
+  
+  let totalPrice = 0;
+  
+  cart.forEach(item => {
+    const listItem = document.createElement('li');
+    listItem.classList.add('flex', 'justify-between', 'items-center', 'border-b', 'py-2');
+    listItem.innerHTML = `
+      <span>${item.name} x ${item.quantity}</span>
+      <span>$${(item.price * item.quantity).toFixed(2)}</span>
+    `;
+    cartItems.appendChild(listItem);
+    
+    totalPrice += item.price * item.quantity;
+  });
+  
+  totalPriceElement.textContent = totalPrice.toFixed(2);
+}
+
+// Add event listeners to "Add to Cart" buttons
+document.querySelectorAll('.add-to-cart').forEach(button => {
+  button.addEventListener('click', function () {
+    const menuItem = this.closest('.menu-item');
+    const name = menuItem.querySelector('h3').textContent;
+    const price = parseFloat(menuItem.querySelector('.text-lg.font-bold').textContent.replace('$', ''));
+    const quantity = parseInt(menuItem.querySelector('.quantity-input').value);
+    
+    // Add item to cart
+    const cartItem = cart.find(item => item.name === name);
+    if (cartItem) {
+      cartItem.quantity += quantity;
+    } else {
+      cart.push({ name, price, quantity });
+    }
+    
+    // Update cart display
+    updateCart();
+  });
+});
+
+  </script>
+  </body>
+  </html>
+  

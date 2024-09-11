@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restaurant Homepage</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-100 font-sans">
+
+  <!-- Header Section
+  <header class="bg-red-500 text-white">
+    <div class="container mx-auto px-4 py-6 flex justify-between items-center">
+      <h1 class="text-4xl font-bold">Delicious Bites</h1>
+      <nav>
+        <ul class="flex space-x-6">
+          <li><a href="#" class="hover:text-yellow-300">Home</a></li>
+          <li><a href="#menu" class="hover:text-yellow-300">Menu</a></li>
+          <li><a href="#offers" class="hover:text-yellow-300">Special Offers</a></li>
+          <li><a href="#contact" class="hover:text-yellow-300">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header> -->
+
+  <!-- Hero Section -->
+  <section class="bg-cover bg-center h-96" style="background-image: url('https://example.com/hero-image.jpg');">
+    <div class="flex items-center justify-center h-full bg-black bg-opacity-50">
+      <div class="text-center text-white">
+        <h2 class="text-5xl font-bold">Welcome to Delicious Bites</h2>
+        <p class="mt-4 text-lg">Where every bite is a delight!</p>
+        <a href="#menu" class="mt-6 inline-block bg-yellow-400 hover:bg-yellow-500 text-black px-6 py-3 rounded-lg font-semibold">Explore Our Menu</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Menu Highlights Section -->
+  <section id="menu" class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <h3 class="text-4xl font-bold text-center mb-12">Menu Highlights</h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="text-center">
+          <img src="./images/PIZZA.jpg" alt="Dish 1" class="rounded-lg shadow-lg">
+          <h4 class="mt-4 text-xl font-semibold">Signature Burger</h4>
+          <p class="mt-2 text-gray-500">RS 550</p>
+        </div>
+        <div class="text-center">
+          <img src="./images/PIZZA.jpg" alt="Dish 2" class="rounded-lg shadow-lg">
+          <h4 class="mt-4 text-xl font-semibold">Grilled Salmon</h4>
+          <p class="mt-2 text-gray-500">RS 550</p>
+        </div>
+        <div class="text-center">
+          <img src="./images/PIZZA.jpg" alt="Dish 3" class="rounded-lg shadow-lg">
+          <h4 class="mt-4 text-xl font-semibold">Vegan Delight</h4>
+          <p class="mt-2 text-gray-500">RS 550</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Special Offers Section -->
+  <section id="offers" class="py-16 bg-red-500 text-white">
+    <div class="container mx-auto px-4 text-center">
+      <h3 class="text-4xl font-bold mb-8">Special Offers</h3>
+      <p class="text-lg mb-6">Join us this week and enjoy 20% off your first order!</p>
+      <a href="#contact" class="inline-block bg-yellow-400 hover:bg-yellow-500 text-black px-6 py-3 rounded-lg font-semibold">Order Now</a>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-16 bg-gray-200">
+    <div class="container mx-auto px-4">
+      <h3 class="text-4xl font-bold text-center mb-8">Get in Touch</h3>
+      <form class="max-w-lg mx-auto bg-white p-8 rounded-lg shadow-lg">
+        <div class="mb-4">
+          <label for="name" class="block text-gray-700">Name</label>
+          <input type="text" id="name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-400">
+        </div>
+        <div class="mb-4">
+          <label for="email" class="block text-gray-700">Email</label>
+          <input type="email" id="email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-400">
+        </div>
+        <div class="mb-4">
+          <label for="message" class="block text-gray-700">Message</label>
+          <textarea id="message" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-400" rows="4"></textarea>
+        </div>
+        <button type="submit" class="w-full bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg font-semibold">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+ 
+  
+
+  <script> 
+    // Example of an alert when the page loads to highlight offers
+window.onload = function() {
+  alert("Special Offer: Get 20% off your first order!");
+};
+
+  </script>
+</body>
+</html>

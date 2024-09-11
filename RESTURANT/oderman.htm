@@ -1,0 +1,195 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Management</title>
+    
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+}
+
+h1, h2 {
+    margin: 10px;
+}
+
+table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+table, th, td {
+    border: 1px solid #ccc;
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+}
+
+th {
+    background-color: #333;
+    color: white;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #f2f2f2;
+}
+
+button {
+    padding: 8px 12px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+button.complete {
+    background-color: green;
+    color: white;
+    border: none;
+}
+
+button.delete {
+    background-color: red;
+    color: white;
+    border: none;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Restaurant Order Management</h1>
+    </header>
+
+    <main>
+        <section id="order-section">
+            <h2>Current Orders</h2>
+            <table id="current-orders">
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Table</th>
+                        <th>Items</th>
+                        <th>Total</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="current-orders-body">
+                    <!-- JavaScript will populate this table -->
+                </tbody>
+            </table>
+        </section>
+
+        <section id="past-orders">
+            <h2>Past Orders</h2>
+            <table id="past-orders-table">
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Table</th>
+                        <th>Items</th>
+                        <th>Total</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="past-orders-body">
+                    <!-- JavaScript will populate this table -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <script> 
+        // Sample data for current orders
+const currentOrders = [
+    { id: 101, table: 5, items: "Pizza, Coke", total: "$25", status: "Pending" },
+    { id: 102, table: 2, items: "Burger, Fries", total: "$15", status: "Pending" }
+];
+
+// Sample data for past orders
+const pastOrders = [
+    { id: 100, table: 1, items: "Pasta, Wine", total: "$30", status: "Completed" }
+];
+
+// Function to display current orders
+function loadCurrentOrders() {
+    const tbody = document.getElementById('current-orders-body');
+    tbody.innerHTML = '';
+    currentOrders.forEach(order => {
+        let row = `<tr>
+            <td>${order.id}</td>
+            <td>${order.table}</td>
+            <td>${order.items}</td>
+            <td>${order.total}</td>
+            <td>${order.status}</td>
+            <td>
+                <button class="complete" onclick="completeOrder(${order.id})">Complete</button>
+                <button class="delete" onclick="deleteOrder(${order.id})">Delete</button>
+            </td>
+        </tr>`;
+        tbody.innerHTML += row;
+    });
+}
+
+// Function to display past orders
+function loadPastOrders() {
+    const tbody = document.getElementById('past-orders-body');
+    tbody.innerHTML = '';
+    pastOrders.forEach(order => {
+        let row = `<tr>
+            <td>${order.id}</td>
+            <td>${order.table}</td>
+            <td>${order.items}</td>
+            <td>${order.total}</td>
+            <td>${order.status}</td>
+        </tr>`;
+        tbody.innerHTML += row;
+    });
+}
+
+// Mark an order as completed
+function completeOrder(orderId) {
+    const order = currentOrders.find(order => order.id === orderId);
+    if (order) {
+        order.status = 'Completed';
+        pastOrders.push(order);
+        currentOrders.splice(currentOrders.indexOf(order), 1);
+        loadCurrentOrders();
+        loadPastOrders();
+    }
+}
+
+// Delete an order
+function deleteOrder(orderId) {
+    const order = currentOrders.find(order => order.id === orderId);
+    if (order) {
+        currentOrders.splice(currentOrders.indexOf(order), 1);
+        loadCurrentOrders();
+    }
+}
+
+// Initialize the page
+window.onload = function() {
+    loadCurrentOrders();
+    loadPastOrders();
+};
+
+    </script>
+</body>
+</html>
